@@ -1,4 +1,4 @@
-name: rlds_env
+name: rlds_env_2
 channels:
   - defaults
 dependencies:

@@ -68,7 +68,10 @@ def transform_step(step: Dict[str, Any]) -> Dict[str, Any]:
             'image': np.array(img),
         },
         'action': np.concatenate(
-            [step['action'][:3], step['action'][5:8], step['action'][-2:]]),
+            [step['action'][:3],
+             np.zeros_like(step['action'][:3]),  # orientation is constant
+             step['action'][-1:],
+             np.asarray(step['is_last'][None]).astype(np.float32)]),  # terminate action is not learned
     }
 
     # copy over all other fields unchanged
